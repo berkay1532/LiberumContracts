@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Metamask Connection</title>
+  </head>
+  <body>
+    <h2>Metamask Bağlantısı</h2>
+    <button id="connectWallet">Cüzdanı Bağla</button>
+    <p id="walletAddress">Cüzdan adresi: Bağlı değil</p>
+
+    <script>
+      async function connectWallet() {
+        if (typeof window.ethereum !== "undefined") {
+          try {
+            // Metamask ile hesap bağlantısını iste
+            const accounts = await window.ethereum.request({
+              method: "eth_requestAccounts",
+            });
+
+            // Bağlanan ilk hesabı göster
+            document.getElementById("walletAddress").textContent =
+              "Cüzdan adresi: " + accounts[0];
+          } catch (error) {
+            console.error("Cüzdan bağlanırken hata oluştu:", error);
+            console.log("Cüzdan bağlantısı reddedildi!");
+          }
+        } else {
+          console.log("Metamask yüklü değil! Lütfen Metamask'i yükleyin.");
+        }
+      }
+
+      document
+        .getElementById("connectWallet")
+        .addEventListener("click", connectWallet);
+    </script>
+  </body>
+</html>
