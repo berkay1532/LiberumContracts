@@ -2,7 +2,7 @@
 pragma solidity ^0.8.19;
 
 import "./HtmlPage.sol";
-import "./Dns_Manage.sol";
+import "./DnsManager.sol";
 
 contract HtmlPageFactory {
     mapping(address => address[]) public userPages;

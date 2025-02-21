@@ -4,7 +4,7 @@ async function main() {
   const [deployer] = await hre.ethers.getSigners();
 
   // Deploy edilen `HtmlPage` kontratının adresini gir
-  const htmlPageAddress = "0x6011E10457f5FD9Adeb3d75325727111ea61795a"; // Buraya kendi kontrat adresini koy
+  const htmlPageAddress = "0x631D0f30915d732AeC1de3E67fD62613D1843368"; // Buraya kendi kontrat adresini koy
 
   // Kontrat bağlantısını al
   const HtmlPage = await hre.ethers.getContractFactory("HtmlPage");
@@ -13,39 +13,46 @@ async function main() {
   // Çağrılacak içerik
   const newContent = `<!DOCTYPE html>
 <html lang="tr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Metamask Bağlantı</title>
-    <script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.min.js"></script>
-  </head>
-  <body>
-    <h1>Metamask Cüzdan Bağlantısı</h1>
-    <button id="connectButton">Metamask Bağla</button>
-    <p id="walletAddress"></p>
+<head>
+  <meta charset="UTF-8">
+  <title>Metamask Bağlantı Testi</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Metamask Bağlantı Testi</h1>
+  <button id="connectButton">Metamask'e Bağlan</button>
 
-    <script>
-      document
-        .getElementById("connectButton")
-        .addEventListener("click", async function () {
-          if (window.ethereum) {
-            try {
-              const accounts = await window.ethereum.request({
-                method: "eth_requestAccounts",
-              });
-              document.getElementById("walletAddress").innerText =
-                "Bağlı Cüzdan: " + accounts[0];
-            } catch (error) {
-              console.error("Cüzdan bağlanırken hata oluştu:", error);
-            }
-          } else {
-            console.log("Metamask veya bir Web3 cüzdanı yükleyin!");
-          }
-        });
-    </script>
-  </body>
-</html>
-`;
+  <script>
+    async function connectMetamask() {
+     
+      if (window.ethereum) {
+        try {
+          
+          const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+          console.log('Bağlanan hesaplar:', accounts);
+          alert('Bağlantı başarılı! Hesap: ' + accounts[0]);
+        } catch (error) {
+          console.error('Bağlantı reddedildi:', error);
+          alert('Bağlantı reddedildi.');
+        }
+      } else {
+        alert('Metamask bulunamadı. Lütfen tarayıcınıza Metamask ekleyin.');
+      }
+    }
+
+    document.getElementById('connectButton').addEventListener('click', connectMetamask);
+  </script>
+</body>
+</html>`;
 
   console.log("📄 Sayfa güncelleniyor...");
 
