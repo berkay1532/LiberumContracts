@@ -11,16 +11,15 @@ async function main() {
   const domainContract = DomainNFT.attach(contractAddress);
 
   // Mint edilecek domain adı
-  const domainName = "beko.lib"; // <-- Buraya istediğiniz domain adını koyun
+  const tokenId = 0; // <-- Buraya istediğiniz domain adını koyun
 
-  console.log(`🛠️ Mint işlemi başlatılıyor: ${domainName}...`);
+  console.log(`🛠️ Fetch URI işlemi başlatılıyor: ${tokenId}...`);
 
-  // Domain mint işlemini başlat
-  const tx = await domainContract.mintDomain(domainName, 300);
-  const receipt = await tx.wait();
+  // Token URI fetch işlemini başlat
+  const tokenURI = await domainContract.tokenURI(tokenId);
+  console.log(tokenURI);
 
-  console.log(`✅ Domain başarıyla mint edildi: ${domainName}`);
-  console.log(`🔗 İşlem Hash: ${receipt.transactionHash}`);
+  console.log(`✅ Token uri başarıyla fetch edildi: ${tokenId}`);
 }
 
 // Hata yakalama mekanizması
