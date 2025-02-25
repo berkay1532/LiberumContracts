@@ -6,6 +6,8 @@ import "./IHtml.sol";
 contract HtmlPage is IHtml {
     string public name;
     address public owner;
+    uint256 public createdTimestamp = 0;
+    uint256 public updatedTimestamp = 0;
     string private htmlContent;
 
     event ContentUpdated(address indexed owner, string newContent);
@@ -15,6 +17,7 @@ contract HtmlPage is IHtml {
         owner = tx.origin;
         htmlContent = initialContent;
         name = _name;
+        createdTimestamp = block.timestamp;
     }
 
     function GET(string memory) public view returns (string memory) {
@@ -28,6 +31,7 @@ contract HtmlPage is IHtml {
     function updateContent(string memory newContent) external onlyOwner {
         htmlContent = newContent;
         emit ContentUpdated(owner, newContent);
+        updatedTimestamp = block.timestamp;
     }
 
     function updateName(string memory newName) external onlyOwner {

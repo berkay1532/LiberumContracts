@@ -4,14 +4,14 @@ async function main() {
   const [deployer] = await hre.ethers.getSigners();
 
   // Kontratın adresini girin
-  const contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3"; // <-- Buraya kendi kontrat adresinizi koyun
+  const contractAddress = "0xdEfb6B5e3f2790907AF30DdF1dd1073fB6f5B0aF"; // <-- Buraya kendi kontrat adresinizi koyun
 
   // DomainNFT kontratını bağla
   const DomainNFT = await hre.ethers.getContractFactory("DomainNFT");
   const domainContract = DomainNFT.attach(contractAddress);
 
   // Mint edilecek domain adı
-  const domainName = "beko.lib"; // <-- Buraya istediğiniz domain adını koyun
+  const domainName = "xxx"; // <-- Buraya istediğiniz domain adını koyun
 
   console.log(`🛠️ Mint işlemi başlatılıyor: ${domainName}...`);
 

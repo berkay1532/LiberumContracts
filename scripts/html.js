@@ -4,21 +4,23 @@ async function main() {
   const [deployer] = await hre.ethers.getSigners();
 
   // Deploy edilen `HtmlPageFactory` kontratının adresini gir
-  const htmlPageFactoryAddress = "0x3E686ED14C6519fa5e4e9aFfCa7860173eC75Ff1"; // Buraya kendi kontrat adresini koy
+  const htmlPageFactoryAddress = "0xd46749156d139FdeA0C479d9D741FcD21CD3D393"; // Buraya kendi kontrat adresini koy
 
   // Kontrat bağlantısını al
   const HtmlPageFactory = await hre.ethers.getContractFactory(
     "HtmlPageFactory"
   );
-  const HtmlPageFactoryContract = HtmlPageFactory.attach(htmlPageFactoryAddress);
+  const HtmlPageFactoryContract = HtmlPageFactory.attach(
+    htmlPageFactoryAddress
+  );
 
   // Çağrılacak içerik
-  const initialContent = "<html><body><h1>Merhaba Dünya!</h1></body></html>";
-
+  const initialContent = "xx";
+  const name = "xx";
   console.log("📄 Yeni bir sayfa oluşturuluyor...");
 
   // createPage fonksiyonunu çağır
-  const tx = await HtmlPageFactoryContract.createPage(initialContent);
+  const tx = await HtmlPageFactoryContract.createPage(initialContent, name);
   const receipt = await tx.wait();
 
   // Event loglarını tara ve PageCreated event'ini bul

@@ -6,6 +6,8 @@ async function main() {
 
   console.log("🚀 Deploy başlatılıyor...");
 
+  // const domainNFTContractAddress = "0xc38705e4EBB6806caEB7eD1fE3F0372325E5baD3";
+
   // 1. Kontratın deploy edilmesi
   const Contract1 = await hre.ethers.getContractFactory("DomainNFT");
   const contract1 = await Contract1.deploy();
