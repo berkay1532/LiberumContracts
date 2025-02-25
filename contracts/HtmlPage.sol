@@ -18,6 +18,7 @@ contract HtmlPage is IHtml {
         htmlContent = initialContent;
         name = _name;
         createdTimestamp = block.timestamp;
+        updatedTimestamp = createdTimestamp;
     }
 
     function GET(string memory) public view returns (string memory) {

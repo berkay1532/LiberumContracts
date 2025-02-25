@@ -4,7 +4,7 @@ async function main() {
   const [deployer] = await hre.ethers.getSigners();
 
   // Deploy edilen `HtmlPageFactory` kontratının adresini gir
-  const htmlPageFactoryAddress = "0xd46749156d139FdeA0C479d9D741FcD21CD3D393"; // Buraya kendi kontrat adresini koy
+  const htmlPageFactoryAddress = "0x44Fa33470e6bF1D065F1072BaA973a221442bE71"; // Buraya kendi kontrat adresini koy
 
   // Kontrat bağlantısını al
   const HtmlPageFactory = await hre.ethers.getContractFactory(

@@ -4,7 +4,7 @@ async function main() {
   const [deployer] = await hre.ethers.getSigners();
 
   // Kontratın adresini girin
-  const contractAddress = "0xdEfb6B5e3f2790907AF30DdF1dd1073fB6f5B0aF"; // <-- Buraya kendi kontrat adresinizi koyun
+  const contractAddress = "0xCe5FFC86bbF58409AC380E11c5A4170Fd3b3C6Db"; // <-- Buraya kendi kontrat adresinizi koyun
 
   // DomainNFT kontratını bağla
   const DomainNFT = await hre.ethers.getContractFactory("DomainNFT");
