@@ -25,7 +25,7 @@ async function main() {
   const balance = await domainContract.balanceOf(walletAddress);
   //   console.log(`Cüzdan ${walletAddress} toplam ${balance} adet NFT'ye sahip.`);
 
-  let listOfLinkedPages = [];
+  let listOfPages = [];
 
   // Her bir token için bilgileri alalım
   for (let i = 0; i < balance; i++) {
@@ -77,8 +77,8 @@ async function main() {
       });
     }
   }
-  console.log({ listOfLinkedPages });
-  console.log("Toplam liste uzunluğu", listOfLinkedPages.length);
+  console.log({ listOfPages });
+  console.log("Toplam liste uzunluğu", listOfPages.length);
 }
 
 // Hata yakalama mekanizması
