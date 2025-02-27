@@ -14,45 +14,15 @@ async function main() {
   const newContent = `<!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <title>Metamask Bağlantı Testi</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-    }
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merhaba Dünya</title>
 </head>
 <body>
-  <h1>Metamask Bağlantı Testi</h1>
-  <button id="connectButton">Metamask'e Bağlan</button>
-
-  <script>
-    async function connectMetamask() {
-     
-      if (window.ethereum) {
-        try {
-          
-          const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-          console.log('Bağlanan hesaplar:', accounts);
-          alert('Bağlantı başarılı! Hesap: ' + accounts[0]);
-        } catch (error) {
-          console.error('Bağlantı reddedildi:', error);
-          alert('Bağlantı reddedildi.');
-        }
-      } else {
-        alert('Metamask bulunamadı. Lütfen tarayıcınıza Metamask ekleyin.');
-      }
-    }
-
-    document.getElementById('connectButton').addEventListener('click', connectMetamask);
-  </script>
+    <h1>Merhaba Dünya</h1>
 </body>
-</html>`;
+</html>
+`;
 
   console.log("📄 Sayfa güncelleniyor...");
 

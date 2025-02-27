@@ -15,7 +15,18 @@ async function main() {
   );
 
   // Çağrılacak içerik
-  const initialContent = "xx";
+  const initialContent = `<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merhaba Dünya</title>
+</head>
+<body>
+    <h1>Merhaba Dünya</h1>
+</body>
+</html>
+`;
   const name = "xx";
   console.log("📄 Yeni bir sayfa oluşturuluyor...");
 

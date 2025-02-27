@@ -17,7 +17,7 @@ async function main() {
   );
 
   // Mint edilecek domain adı
-  const domainName = "xxx"; // <-- Buraya istediğiniz domain adını koyun
+  const domainName = "senos.lib"; // <-- Buraya istediğiniz domain adını koyun
 
   // Domain mint işlemini başlat
   const tokenId = await domainContract.getTokenIdByDomain(domainName);
@@ -34,6 +34,8 @@ async function main() {
 
   const name = await htmlContentPageContract.name();
   console.log({ name });
+  const content = await htmlContentPageContract.GET("");
+  console.log({ content });
   const createdTimestamp = await htmlContentPageContract.createdTimestamp();
   console.log({ createdTimestamp });
   const updatedTimestamp = await htmlContentPageContract.updatedTimestamp();

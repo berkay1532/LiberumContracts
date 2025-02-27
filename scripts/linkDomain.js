@@ -15,8 +15,8 @@ async function main() {
   );
 
   // Linklemek istediğin sayfa kontratı ve domain token ID
-  const pageContractAddress = "0xaDE43B8059003696d37e4b84e8765Ae75141E7BA"; // Buraya sayfa kontrat adresini gir
-  const tokenId = 1; // Buraya domain token ID'yi gir
+  const pageContractAddress = "0x569441F84db20306A9EcADD82e9540bA3c3Ae45b"; // Buraya sayfa kontrat adresini gir
+  const tokenId = 3; // Buraya domain token ID'yi gir
 
   console.log(`🔗 Token ID ${tokenId} için domain sayfaya bağlanıyor...`);
 

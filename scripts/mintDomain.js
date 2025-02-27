@@ -11,12 +11,12 @@ async function main() {
   const domainContract = DomainNFT.attach(contractAddress);
 
   // Mint edilecek domain adı
-  const domainName = "xxx"; // <-- Buraya istediğiniz domain adını koyun
+  const domainName = "xyz.lib"; // <-- Buraya istediğiniz domain adını koyun
 
   console.log(`🛠️ Mint işlemi başlatılıyor: ${domainName}...`);
 
   // Domain mint işlemini başlat
-  const tx = await domainContract.mintDomain(domainName, 300);
+  const tx = await domainContract.mintDomain(domainName, 30000000);
   const receipt = await tx.wait();
 
   console.log(`✅ Domain başarıyla mint edildi: ${domainName}`);
