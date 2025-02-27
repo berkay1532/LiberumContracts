@@ -44,7 +44,11 @@ async function main() {
           tokenId
         );
         if (pageContract != hre.ethers.ZeroAddress) {
+          const HtmlPage = await hre.ethers.getContractFactory("HtmlPage");
+          const htmlPage = HtmlPage.attach(pageContract);
+          const name = await htmlPage.name();
           listOfLinkedPages.push({
+            name: name,
             pageContract: pageContract,
             status: "linked",
             domain: domain,
@@ -63,7 +67,11 @@ async function main() {
     );
     // Eğer yoksa, available olarak listeye ekle
     if (!existsInList) {
+      const HtmlPage = await hre.ethers.getContractFactory("HtmlPage");
+      const htmlPage = HtmlPage.attach(page);
+      const name = await htmlPage.name();
       listOfLinkedPages.push({
+        name: name,
         pageContract: page,
         status: "available",
       });
