@@ -20,7 +20,6 @@ async function main() {
   //   console.log(`Cüzdan ${walletAddress} toplam ${balance} adet NFT'ye sahip.`);
 
   let listOfDomains = [];
-  let listOfAvailableDomains = [];
 
   // Her bir token için bilgileri alalım
   for (let i = 0; i < balance; i++) {
@@ -36,10 +35,12 @@ async function main() {
       //   console.log({ ownerOf });
       if (ownerOf != hre.ethers.ZeroAddress) {
         const domain = await domainContract.getDomainByTokenId(tokenId);
-        listOfDomains.push({ tokenId: tokenId, domain: domain });
+        // listOfDomains.push({ tokenId: tokenId, domain: domain });
         const pageContract = await htmlPageFactory.getLinkedDomain(tokenId);
         if (pageContract == hre.ethers.ZeroAddress) {
-          listOfAvailableDomains.push({
+          listOfDomains.push({ tokenId: tokenId, domain: domain });
+        } else {
+          listOfDomains.push({
             tokenId: tokenId,
             domain: domain,
             pageContract: pageContract,
@@ -52,7 +53,6 @@ async function main() {
   }
 
   console.log({ listOfDomains });
-  console.log({ listOfAvailableDomains });
 }
 
 // Hata yakalama mekanizması
