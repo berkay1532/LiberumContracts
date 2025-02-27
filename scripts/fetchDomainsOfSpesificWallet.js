@@ -39,7 +39,11 @@ async function main() {
         listOfDomains.push({ tokenId: tokenId, domain: domain });
         const pageContract = await htmlPageFactory.getLinkedDomain(tokenId);
         if (pageContract == hre.ethers.ZeroAddress) {
-          listOfAvailableDomains.push({ tokenId: tokenId, domain: domain });
+          listOfAvailableDomains.push({
+            tokenId: tokenId,
+            domain: domain,
+            pageContract: pageContract,
+          });
         }
       }
     } catch (err) {
