@@ -47,7 +47,7 @@ async function main() {
           const HtmlPage = await hre.ethers.getContractFactory("HtmlPage");
           const htmlPage = HtmlPage.attach(pageContract);
           const name = await htmlPage.name();
-          listOfLinkedPages.push({
+          listOfPages.push({
             name: name,
             pageContract: pageContract,
             status: "linked",
@@ -61,16 +61,14 @@ async function main() {
   }
   // Tüm userPages için döngü oluştur
   for (let page of userPages) {
-    // Bu page'in pageContract'ı listOfLinkedPages içinde var mı diye kontrol et
-    const existsInList = listOfLinkedPages.some(
-      (item) => item.pageContract === page
-    );
+    // Bu page'in pageContract'ı listOfPages içinde var mı diye kontrol et
+    const existsInList = listOfPages.some((item) => item.pageContract === page);
     // Eğer yoksa, available olarak listeye ekle
     if (!existsInList) {
       const HtmlPage = await hre.ethers.getContractFactory("HtmlPage");
       const htmlPage = HtmlPage.attach(page);
       const name = await htmlPage.name();
-      listOfLinkedPages.push({
+      listOfPages.push({
         name: name,
         pageContract: page,
         status: "available",
