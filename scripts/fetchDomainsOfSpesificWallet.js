@@ -14,7 +14,7 @@ async function main() {
   const domainContract = DomainNFT.attach(domainContractAddress);
   const htmlPageFactory = HtmlPageFactory.attach(htmlPageFactoryAddress);
 
-  const walletAddress = "0xb5c370ccFad112B70960CE9320B94ff1e695B1d5";
+  const walletAddress = "0x1F8B943E41Ef3D5c26b054Af2D8aa2C6988702f3";
 
   const balance = await domainContract.balanceOf(walletAddress);
   //   console.log(`Cüzdan ${walletAddress} toplam ${balance} adet NFT'ye sahip.`);
