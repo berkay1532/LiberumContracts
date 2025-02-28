@@ -48,14 +48,19 @@ Liberum is a decentralized domain and hosting infrastructure that leverages **bl
 
 ---
 
-## Demo & Screenshots
+## Demo
 
-We have prepared a **pitch deck** (included in this repository) illustrating how Liberum works step by step:
+Illustrating how Liberum works step by step:
 
 1. **Minting a Blockspace:** Users pick a unique `.lib` name, select a registration period, and mint the ERC-721 token representing their domain.
 2. **Linking Content:** Upload HTML (or other files) to the Liberum smart contract, creating a fully on-chain website.
 3. **Visiting a .lib Site:** With the Liberum extension, simply type your `.lib` address in the browser, and Liberum will fetch and display your on-chain site.
 4. **Discovery & Trends:** Check out the “Newest” or “Trending” lists to find interesting decentralized websites from the Liberum community.
+
+### 🛠 Try the Live Demo
+
+You can test Liberum in action by visiting **[Liberum.space](https://liberum.space/)**.  
+There, you can register a `.lib` domain, link content, and explore on-chain websites created by other users. 🚀
 
 ---
 
