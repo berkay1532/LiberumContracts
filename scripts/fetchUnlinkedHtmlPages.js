@@ -52,6 +52,7 @@ async function main() {
             pageContract: pageContract,
             status: "linked",
             domain: domain,
+            tokenId: tokenId,
           });
         }
       }
