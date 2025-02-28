@@ -35,15 +35,21 @@ async function main() {
       //   console.log({ ownerOf });
       if (ownerOf != hre.ethers.ZeroAddress) {
         const domain = await domainContract.getDomainByTokenId(tokenId);
+        const expiration_date = await domainContract.getNFTExpiration(tokenId);
         // listOfDomains.push({ tokenId: tokenId, domain: domain });
         const pageContract = await htmlPageFactory.getLinkedDomain(tokenId);
         if (pageContract == hre.ethers.ZeroAddress) {
-          listOfDomains.push({ tokenId: tokenId, domain: domain });
+          listOfDomains.push({
+            tokenId: tokenId,
+            domain: domain,
+            expiration_date: expiration_date,
+          });
         } else {
           listOfDomains.push({
             tokenId: tokenId,
             domain: domain,
             pageContract: pageContract,
+            expiration_date: expiration_date,
           });
         }
       }
