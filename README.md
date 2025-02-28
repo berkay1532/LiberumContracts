@@ -44,6 +44,10 @@ Liberum is a decentralized domain and hosting infrastructure that leverages **bl
 
 ---
 
+![Technical Scheme](images/Liberum.png)
+
+---
+
 ## Demo & Screenshots
 
 We have prepared a **pitch deck** (included in this repository) illustrating how Liberum works step by step:
