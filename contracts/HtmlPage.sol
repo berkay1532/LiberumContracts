@@ -29,7 +29,7 @@ contract HtmlPage is IHtml {
         return "POST reqeusts not supported";
     }
 
-    function getName() public view returns (string memory) {
+    function getFileName() public view returns (string memory) {
         return name;
     }
 
