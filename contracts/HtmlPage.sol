@@ -29,6 +29,10 @@ contract HtmlPage is IHtml {
         return "POST reqeusts not supported";
     }
 
+    function getName() public view returns (string memory) {
+        return name;
+    }
+
     function updateContent(string memory newContent) external onlyOwner {
         htmlContent = newContent;
         emit ContentUpdated(owner, newContent);

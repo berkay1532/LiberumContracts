@@ -4,26 +4,24 @@ async function main() {
   // Kontratları derleyelim
   await hre.run("compile");
 
-  console.log("🚀 Deploy başlatılıyor...");
+  console.log("🚀 Deploying...");
 
-  // const domainNFTContractAddress = "0xc38705e4EBB6806caEB7eD1fE3F0372325E5baD3";
-
-  // 1. Kontratın deploy edilmesi
+  // DnsManager Contract deploy
   const Contract1 = await hre.ethers.getContractFactory("DomainNFT");
   const contract1 = await Contract1.deploy();
   await contract1.waitForDeployment();
   console.log(`✅ Contract1 deployed to: ${await contract1.getAddress()}`);
 
-  // 2. Kontratın deploy edilmesi
+  // HtmlPageFactory Contract deploy
   const Contract2 = await hre.ethers.getContractFactory("HtmlPageFactory");
   const contract2 = await Contract2.deploy(await contract1.getAddress());
   await contract2.waitForDeployment();
   console.log(`✅ Contract2 deployed to: ${await contract2.getAddress()}`);
 
-  console.log("🎉 Tüm kontratlar başarıyla deploy edildi!");
+  console.log("🎉 All contracts deployed successfully!");
 }
 
-// Hata yakalama mekanizması
+// Error handling
 main().catch((error) => {
   console.error("❌ Hata oluştu:", error);
   process.exitCode = 1;

@@ -3,8 +3,8 @@ const hre = require("hardhat");
 async function main() {
   const [deployer] = await hre.ethers.getSigners();
 
-  // Kontratın adresini girin
-  const htmlPageAddress = "0x3F05808be95F40f855BAc1C2C3347fc5b47364C3";
+  // HtmlPage contract address
+  const htmlPageAddress = "0xbB0F8Eb109872F6bE4CbEd844cD4228911128fD8";
 
   const HtmlPageContract = await hre.ethers.getContractFactory("HtmlPage");
   const htmlPageContract = HtmlPageContract.attach(htmlPageAddress);
@@ -22,8 +22,8 @@ async function main() {
   console.log({ updatedTimestamp });
 }
 
-// Hata yakalama mekanizması
+
 main().catch((error) => {
-  console.error("❌ Hata oluştu:", error);
+  console.error("❌ Error occured:", error);
   process.exitCode = 1;
 });

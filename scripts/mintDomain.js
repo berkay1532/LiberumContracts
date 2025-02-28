@@ -3,28 +3,24 @@ const hre = require("hardhat");
 async function main() {
   const [deployer] = await hre.ethers.getSigners();
 
-  // Kontratın adresini girin
-  const contractAddress = "0xCe5FFC86bbF58409AC380E11c5A4170Fd3b3C6Db"; // <-- Buraya kendi kontrat adresinizi koyun
+  // DomainNFT contract address
+  const contractAddress = "0x918f80Fc9aD946b27D989feD8c99A66d35584d41";
 
-  // DomainNFT kontratını bağla
   const DomainNFT = await hre.ethers.getContractFactory("DomainNFT");
   const domainContract = DomainNFT.attach(contractAddress);
 
-  // Mint edilecek domain adı
-  const domainName = "xyz.lib"; // <-- Buraya istediğiniz domain adını koyun
+  const domainName = "xyz.lib";
 
-  console.log(`🛠️ Mint işlemi başlatılıyor: ${domainName}...`);
+  console.log(`🛠️ Minting process is starting: ${domainName}...`);
 
-  // Domain mint işlemini başlat
   const tx = await domainContract.mintDomain(domainName, 30000000);
   const receipt = await tx.wait();
 
-  console.log(`✅ Domain başarıyla mint edildi: ${domainName}`);
-  console.log(`🔗 İşlem Hash: ${receipt.transactionHash}`);
+  console.log(`✅ Domain minted successfully: ${domainName}`);
+  console.log(`🔗 Tx Hash: ${receipt.transactionHash}`);
 }
 
-// Hata yakalama mekanizması
 main().catch((error) => {
-  console.error("❌ Hata oluştu:", error);
+  console.error("❌ Error occured:", error);
   process.exitCode = 1;
 });

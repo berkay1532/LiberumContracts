@@ -29,12 +29,27 @@ contract DomainNFT is ERC721Enumerable, Ownable {
     constructor() ERC721("DomainNFT", "DNFT") Ownable(msg.sender) {}
 
     // Duration should given as seconds type
+
     function mintDomain(
         string memory domain,
         uint256 initDuration
     ) external payable {
+        require(bytes(domain).length > 4, "Domain too short");
+        require(
+            keccak256(
+                abi.encodePacked(
+                    substring(
+                        domain,
+                        bytes(domain).length - 4,
+                        bytes(domain).length
+                    )
+                )
+            ) == keccak256(abi.encodePacked(".lib")),
+            "Domain must end with .lib"
+        );
         require(domainToTokenId[domain] == 0, "Domain already minted");
         require(msg.value >= renewalFee, "Insufficient minting fee");
+
         _tokenIdCounter++;
         uint256 newTokenId = _tokenIdCounter;
 
@@ -54,47 +69,19 @@ contract DomainNFT is ERC721Enumerable, Ownable {
         );
     }
 
-    // function mintDomain(
-    //     string memory domain,
-    //     uint256 initDuration
-    // ) external payable {
-    //     require(bytes(domain).length > 4, "Domain too short");
-    //     require(
-    //         keccak256(abi.encodePacked(substring(domain, bytes(domain).length - 4, bytes(domain).length)))
-    //         == keccak256(abi.encodePacked(".lib")),
-    //         "Domain must end with .lib"
-    //     );
-    //     require(domainToTokenId[domain] == 0, "Domain already minted");
-    //     require(msg.value >= renewalFee, "Insufficient minting fee");
-
-    //     _tokenIdCounter++;
-    //     uint256 newTokenId = _tokenIdCounter;
-
-    //     domainToTokenId[domain] = newTokenId;
-    //     tokenIdToDomain[newTokenId] = DomainInfo({
-    //         expirationTime: block.timestamp + initDuration,
-    //         domain: domain
-    //     });
-
-    //     _owners[newTokenId] = msg.sender;
-    //     _safeMint(msg.sender, newTokenId);
-    //     emit DomainMinted(
-    //         msg.sender,
-    //         domain,
-    //         newTokenId,
-    //         tokenIdToDomain[newTokenId].expirationTime
-    //     );
-    // }
-
-    // function substring(string memory str, uint256 startIndex, uint256 endIndex) internal pure returns (string memory) {
-    //     bytes memory strBytes = bytes(str);
-    //     require(endIndex > startIndex, "Invalid indices");
-    //     bytes memory result = new bytes(endIndex - startIndex);
-    //     for (uint256 i = startIndex; i < endIndex; i++) {
-    //         result[i - startIndex] = strBytes[i];
-    //     }
-    //     return string(result);
-    // }
+    function substring(
+        string memory str,
+        uint256 startIndex,
+        uint256 endIndex
+    ) internal pure returns (string memory) {
+        bytes memory strBytes = bytes(str);
+        require(endIndex > startIndex, "Invalid indices");
+        bytes memory result = new bytes(endIndex - startIndex);
+        for (uint256 i = startIndex; i < endIndex; i++) {
+            result[i - startIndex] = strBytes[i];
+        }
+        return string(result);
+    }
 
     function renew(uint256 tokenId, uint256 extraDuration) external payable {
         require(ownerOf(tokenId) == msg.sender, "Only owner can renew");

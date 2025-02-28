@@ -4,17 +4,17 @@ async function main() {
   const [deployer] = await hre.ethers.getSigners();
 
   // Kontratın adresini girin
-  const contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3"; // <-- Kontrat adresiniz
+  const contractAddress = "0x918f80Fc9aD946b27D989feD8c99A66d35584d41";
 
   // DomainNFT kontratını bağla
   const DomainNFT = await hre.ethers.getContractFactory("DomainNFT");
   const domainContract = DomainNFT.attach(contractAddress);
 
   // Mint edilecek domain adı
-  const domainName = "beko.lib"; // <-- Buraya istediğiniz domain adını koyun
-  const duration = 300; // Süreyi (örneğin saniye cinsinden) belirleyin
+  const domainName = "beko.lib"; // <-- Domain name
+  const duration = 300; // As second
 
-  // *** ESTIMATED GAS FEE HESAPLAMA ***
+  // *** Estimated Gas Fee Calculate ***
   const gasEstimate = await domainContract.mintDomain.estimateGas(
     domainName,
     duration
@@ -24,12 +24,11 @@ async function main() {
   const estimatedGasFee = gasEstimate * feeData.gasPrice;
 
   console.log(
-    `💰 Tahmini Gas Ücreti: ${hre.ethers.formatEther(estimatedGasFee)} ETH`
+    `💰 Estimated Gas Fee: ${hre.ethers.formatEther(estimatedGasFee)} ETH`
   );
 }
 
-// Hata yakalama mekanizması
 main().catch((error) => {
-  console.error("❌ Hata oluştu:", error);
+  console.error("❌ Error occured:", error);
   process.exitCode = 1;
 });

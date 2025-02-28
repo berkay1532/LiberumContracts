@@ -3,10 +3,9 @@ const hre = require("hardhat");
 async function main() {
   const [deployer] = await hre.ethers.getSigners();
 
-  // Deploy edilen `HtmlPageFactory` kontratının adresini gir
-  const htmlPageFactoryAddress = "0x44Fa33470e6bF1D065F1072BaA973a221442bE71"; // Kendi kontrat adresinizi girin
+  // `HtmlPageFactory` contract address
+  const htmlPageFactoryAddress = "0xea2DC82269D187F2336B1B243B29D23eB9d62D59";
 
-  // Kontrata bağlan
   const HtmlPageFactory = await hre.ethers.getContractFactory(
     "HtmlPageFactory"
   );
@@ -14,11 +13,10 @@ async function main() {
     htmlPageFactoryAddress
   );
 
-  // Linklemek istediğin sayfa kontratı ve domain token ID
-  const pageContractAddress = "0x569441F84db20306A9EcADD82e9540bA3c3Ae45b"; // Buraya sayfa kontrat adresini gir
-  const tokenId = 3; // Buraya domain token ID'yi gir
+  const pageContractAddress = "0xbB0F8Eb109872F6bE4CbEd844cD4228911128fD8";
+  const tokenId = 3; // domain token id
 
-  console.log(`🔗 Token ID ${tokenId} için domain sayfaya bağlanıyor...`);
+  console.log(`🔗 Token ID ${tokenId} is linking this domain...`);
 
   try {
     const tx = await HtmlPageFactoryContract.linkDomain(
@@ -26,14 +24,13 @@ async function main() {
       tokenId
     );
     const receipt = await tx.wait();
-    console.log(`✅ Token ID ${tokenId} için domain başarıyla bağlandı.`);
+    console.log(`✅ Token ID ${tokenId} linked this domain succesfully.`);
   } catch (error) {
-    console.error("❌ Hata oluştu:", error);
+    console.error("❌ Error occured:", error);
   }
 }
 
-// Hata yakalama mekanizması
 main().catch((error) => {
-  console.error("❌ Ana işlem sırasında hata oluştu:", error);
+  console.error("❌ Error occured:", error);
   process.exitCode = 1;
 });

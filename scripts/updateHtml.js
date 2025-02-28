@@ -3,44 +3,40 @@ const hre = require("hardhat");
 async function main() {
   const [deployer] = await hre.ethers.getSigners();
 
-  // Deploy edilen `HtmlPage` kontratının adresini gir
-  const htmlPageAddress = "0x631D0f30915d732AeC1de3E67fD62613D1843368"; // Buraya kendi kontrat adresini koy
+  // `HtmlPage` contract address
+  const htmlPageAddress = "0xbB0F8Eb109872F6bE4CbEd844cD4228911128fD8";
 
-  // Kontrat bağlantısını al
   const HtmlPage = await hre.ethers.getContractFactory("HtmlPage");
   const htmlPageContract = HtmlPage.attach(htmlPageAddress);
 
-  // Çağrılacak içerik
+  // new content
   const newContent = `<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Merhaba Dünya</title>
+    <title>Hello World</title>
 </head>
 <body>
-    <h1>Merhaba Dünya</h1>
+    <h1>Hello World</h1>
 </body>
 </html>
 `;
 
-  console.log("📄 Sayfa güncelleniyor...");
+  console.log("📄 Page is updating...");
 
-  // createPage fonksiyonunu çağır
+  // function call
   const tx = await htmlPageContract.updateContent(newContent);
   const receipt = await tx.wait();
-  // Event loglarını tara ve ContentUpdated event'ini bul
+  // Search ContentUpdated event logs
   const event = receipt.logs.find(
     (log) => log.fragment?.name === "ContentUpdated"
   );
 
   if (event) {
-    // const newPageAddress = event.args[1]; // Event'ten oluşturulan kontrat adresini al
-    console.log(`✅ Sayfa başarıyla güncellendi`);
+    console.log(`✅ Page updated successfully`);
   } else {
-    console.log(
-      "⚠️ Sayfa oluşturma işlemi başarılı oldu fakat event bulunamadı."
-    );
+    console.log("⚠️ Event could not find");
   }
 }
 
